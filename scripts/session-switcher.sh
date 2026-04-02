@@ -3,7 +3,7 @@ set -euo pipefail
 
 current_session=$(tmux display-message -p '#S')
 
-sessions=$(tmux list-sessions -F '#S' | grep -Fxv "$current_session")
+sessions=$(tmux list-sessions -F '#S' | grep -Fxv "$current_session" || true)
 
 if [ -z "$sessions" ]; then
     tmux display-message "No other sessions"
